@@ -18,6 +18,7 @@ typedef struct FunctionBar_ {
    char** keys;
    int* events;
    bool staticData;
+   bool hide;
 } FunctionBar;
 
 
