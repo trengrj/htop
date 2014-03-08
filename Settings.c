@@ -9,6 +9,7 @@ in the source distribution for its full text.
 
 #include "String.h"
 #include "Vector.h"
+#include "FunctionBar.h"
 
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -107,6 +108,8 @@ static bool Settings_read(Settings* this, char* fileName, int cpuCount) {
          this->pl->hideKernelThreads = atoi(option[1]);
       } else if (String_eq(option[0], "hide_userland_threads")) {
          this->pl->hideUserlandThreads = atoi(option[1]);
+      } else if (String_eq(option[0], "hide_function_bar")) {
+         FunctionBar_hide = atoi(option[1]);
       } else if (String_eq(option[0], "shadow_other_users")) {
          this->pl->shadowOtherUsers = atoi(option[1]);
       } else if (String_eq(option[0], "show_thread_names")) {
@@ -180,6 +183,7 @@ bool Settings_write(Settings* this) {
    fprintf(fd, "hide_threads=%d\n", (int) this->pl->hideThreads);
    fprintf(fd, "hide_kernel_threads=%d\n", (int) this->pl->hideKernelThreads);
    fprintf(fd, "hide_userland_threads=%d\n", (int) this->pl->hideUserlandThreads);
+   fprintf(fd, "hide_function_bar=%d\n", (int) FunctionBar_hide);
    fprintf(fd, "shadow_other_users=%d\n", (int) this->pl->shadowOtherUsers);
    fprintf(fd, "show_thread_names=%d\n", (int) this->pl->showThreadNames);
    fprintf(fd, "highlight_base_name=%d\n", (int) this->pl->highlightBaseName);

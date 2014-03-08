@@ -18,9 +18,10 @@ typedef struct FunctionBar_ {
    char** keys;
    int* events;
    bool staticData;
-   bool hide;
 } FunctionBar;
 
+
+extern bool FunctionBar_hide;
 
 extern ObjectClass FunctionBar_class;
 

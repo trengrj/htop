@@ -851,10 +851,6 @@ int main(int argc, char** argv) {
          pl->hideKernelThreads = !pl->hideKernelThreads;
          settings->changed = true;
          break;
-      case 'b':
-	 defaultBar->hide = !defaultBar->hide;
-	 FunctionBar_draw(defaultBar, NULL);
-	 break;
       default:
          doRefresh = false;
          refreshTimeout = resetRefreshTimeout;

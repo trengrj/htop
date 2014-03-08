@@ -24,10 +24,11 @@ typedef struct FunctionBar_ {
    char** keys;
    int* events;
    bool staticData;
-   bool hide;
 } FunctionBar;
 
 }*/
+
+bool FunctionBar_hide = false;
 
 static const char* FunctionBar_FKeys[] = {"F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", NULL};
 
@@ -42,7 +43,6 @@ ObjectClass FunctionBar_class = {
 FunctionBar* FunctionBar_new(const char** functions, const char** keys, int* events) {
    FunctionBar* this = AllocThis(FunctionBar);
    this->functions = (char**) functions;
-   this->hide = false;
    if (keys && events) {
       this->staticData = false; 
       this->functions = malloc(sizeof(char*) * 15);
@@ -96,7 +96,7 @@ void FunctionBar_draw(const FunctionBar* this, char* buffer) {
 }
 
 void FunctionBar_drawAttr(const FunctionBar* this, char* buffer, int attr) {
-   if (this->hide) {
+   if (FunctionBar_hide) {
       mvhline(LINES-1, 0, ' ', COLS);
       return;
    }
